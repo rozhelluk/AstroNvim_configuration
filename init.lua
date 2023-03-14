@@ -16,16 +16,13 @@ return {
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
     },
   },
-
   -- Set colorscheme to use
-  colorscheme = "astrodark",
-
+  -- colorscheme = "gruvbox-baby",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
-
   lsp = {
     -- customize lsp formatting options
     formatting = {
@@ -52,7 +49,6 @@ return {
       -- "pyright"
     },
   },
-
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },
@@ -63,11 +59,12 @@ return {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.cmd [[ autocmd BufNewFile,BufRead *.html set filetype=html ]]
+    vim.cmd [[ autocmd FileType htmldjango,html,javascript,lua,yaml,yml,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab]]
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
@@ -81,4 +78,37 @@ return {
     --   },
     -- }
   end,
+  dap = {
+    adapters = {
+      python = {
+        type = "executable",
+        command = "path/to/virtualenvs/debugpy/bin/python",
+        args = { "-m", "debugpy.adapter" },
+      },
+    },
+    configurations = {
+      python = {
+        {
+          type = "python",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+              return cwd .. "/venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+              return cwd .. "/.venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/env/bin/python") == 1 then
+              return cwd .. "/env/bin/python"
+            elseif vim.fn.executable(cwd .. "/.env/bin/python") == 1 then
+              return cwd .. "/.env/bin/python"
+            else
+              return "/usr/bin/python3.11"
+            end
+          end,
+        },
+      },
+    },
+  },
 }
