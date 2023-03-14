@@ -1,83 +1,177 @@
-return {
-  -- Configure AstroNvim updates
-  updater = {
-    remote = "origin", -- remote to use
-    channel = "stable", -- "stable" or "nightly"
-    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "nightly", -- branch name (NIGHTLY ONLY)
-    commit = nil, -- commit hash (NIGHTLY ONLY)
-    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
-    skip_prompts = false, -- skip prompts about breaking changes
-    show_changelog = true, -- show the changelog after performing an update
-    auto_quit = false, -- automatically quit the current session after a successful update
-    remotes = { -- easily add new remotes to track
-      --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
-      --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
-      --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
+local config = {
+  colorscheme = "gruvbox-baby",
+  options = {
+    opt = {
+      relativenumber = true,
+      number = true,
+      spell = false,
+      signcolumn = "no",
+      wrap = true,
+      colorcolumn = "80,120",
+      swapfile = false,
+      cursorline = true,
+      mouse = "a",
+      clipboard = "unnamedplus",
+      encoding = "UTF-8",
+      fileencoding = "UTF-8",
+      tabstop = 4,
+      showtabline = 0,
+      laststatus = 0,
+    },
+    g = {
+      mapleader = " ",
+      cmp_enabled = true,
+      autopairs_enabled = false,
+      diagnostics_enabled = true,
+      status_diagnostics_enabled = true,
+      autoformat_enabled = false,
+
+      mkdp_auto_start = 1,
+      mkdp_browser = '/opt/waterfox/waterfox',
+      mkdp_auto_close = 1,
+      mkdp_echo_preview_url = 1
     },
   },
-  -- Set colorscheme to use
-  colorscheme = "gruvbox-baby",
-  -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
+  default_theme = {
+    plugins = {
+      ["neo-tree"] = true,
+      ["nvim-web-devicons"] = true,
+      ["which-key"] = true,
+      aerial = true,
+      beacon = true,
+      bufferline = true,
+      highlighturl = true,
+      indent_blankline = true,
+      notify = true,
+      rainbow = true,
+      symbols_outline = true,
+      telescope = true,
+      ["neovim-session-manager"] = false,
+      ["nvim-tree"] = false,
+      dashboard = false,
+      hop = false,
+      lightspeed = false,
+      vimwiki = false,
+    },
+  },
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
   lsp = {
-    -- customize lsp formatting options
-    formatting = {
-      -- control auto formatting on save
-      format_on_save = {
-        enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
-        ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
-        },
-      },
-      disabled = { -- disable formatting capabilities for the listed language servers
-        -- "sumneko_lua",
-      },
-      timeout_ms = 1000, -- default format timeout
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
-    },
-    -- enable servers that you already have installed without mason
-    servers = {
-      -- "pyright"
+    mappings = {
+      n = {},
     },
   },
-  -- Configure require("lazy").setup() options
-  lazy = {
-    defaults = { lazy = true },
-    performance = {
-      rtp = {
-        -- customize default disabled vim plugins
-        disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin", "matchparen" },
+  mappings = {
+    vim.keymap.set("", ";", ":"),
+    vim.keymap.set("n", "<A-r>", "i<C-^><esc>l"),
+    vim.keymap.set("i", "<A-r>", "<C-^>"),
+    vim.keymap.set("c", "<A-r>", "i<C-^><esc>l"),
+    vim.keymap.set("v", "<A-r>", "<C-^>"),
+
+    n = {
+
+      ["<F5>"] = false,
+      ["<F17>"] = false,
+      ["<F29>"] = false,
+      ["<F6>"] = false,
+      ["<F9>"] = false,
+      ["<F10>"] = false,
+      ["<F11>"] = false,
+      ["<F23>"] = false,
+
+
+      ["<leader>tp"] = {
+        function() astronvim.toggle_term_cmd "python3.11" end,
+        desc = "ToggleTerm python",
+      },
+
+      ["<M-l>"] = {
+        function() vim.diagnostic.open_float() end,
+        desc = "Hover diagnostics" },
+
+      ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+      ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+      ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+      ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+
+      -- ["<leader>ul"] = { "<cmd>lua vim.o.ls = 2<cr>", desc = "ls" },
+
+      vim.keymap.set("n", "<leader>n", ":ASToggle<CR>"),
+
+      -- vim.keymap.set("n", "<F2>", ":!toggle_alacritty_opacity"),
+      ["<F2>"] = { "<cmd>!toggle_vim_opacity.sh<cr><cr>", desc = "toggle vim opacity" },
+      ["<F3>"] = { "<cmd>!set_alacritty_opacity2<cr><cr>", desc = "toggle alacritty opacity" },
+
+      ["<leader>ar"] = { "<cmd>AstroReload<cr>", desc = "AstroReload" },
+      ["<leader>aa"] = { "<cmd>tabnew /home/rozhelluk/.config/nvim/lua/user/init.lua<cr>:q<cr>", desc = "AstroConfig" },
+      ["<leader>au"] = { "<cmd>AstroUpdate<cr>", desc = "AstroUpdate" },
+      ["<leader>av"] = { "<cmd>AstroVersion<cr>", desc = "AstroVersion" },
+
+      vim.keymap.set("n", "<F5>", ":w<CR>:exec '!python3.11 -B' shellescape(@%, 1)<CR>"),
+      vim.keymap.set("n", "<F4>", ":w<CR>:vsplit term://python3.11 -B %<cr>i"),
+      vim.keymap.set("n", "<F8>", ":w<CR>:exec '!g++ -Wall % && ./a.out' shellescape(@%, 1)<CR>"),
+      vim.keymap.set("n", "<F9>", ":w<CR>:vsplit term://g++ -Wall % && ./a.out<cr>i"),
+      vim.keymap.set("n", "<F6>", "vim.bo.filetype"),
+
+      ["<leader>r"] = { ":LspRestart<cr>", desc = "LspRestart" }, -- change description but the same command
+    },
+    t = {
+      ["<esc>"] = false,
+    },
+
+    -- i = {
+    vim.keymap.set("i", "<F5>", "<Esc>:w<CR>:exec '!python3.11 -B' shellescape(@%, 1)<CR>"),
+    vim.keymap.set("i", "<F4>", "<Esc>:w<CR>:vsplit term://python3.11 -B %<cr>i"),
+    -- },
+  },
+  plugins = {
+    init = {
+      ["goolord/alpha-nvim"] = { disable = true },
+      "luisiacc/gruvbox-baby",
+      "Pocco81/auto-save.nvim",
+      "XkbSwitchEnabled",
+      "iamcco/markdown-preview.nvim",
+      -- "davidgranstrom/nvim-markdown-preview"
+    },
+    dapui = function(config) -- parameter is the default setup config table
+      local dap = require "dap"
+      dap.listeners.after.event_initialized["dapui_config"] = nil
+      dap.listeners.before.event_terminated["dapui_config"] = nil
+      dap.listeners.before.event_exited["dapui_config"] = nil
+
+      -- modify config table if necessary to configure `nvim-dap-ui`
+      return config
+    end,
+  },
+  cmp = {
+    source_priority = {
+      nvim_lsp = 1000,
+      luasnip = 750,
+      buffer = 500,
+      path = 250,
+    },
+  },
+  ["which-key"] = {
+    register = {
+      n = {
+        ["<leader>"] = {
+          ["b"] = { name = "Buffer" },
+          ["a"] = { name = "Astro" },
+          ["r"] = { name = "Astro" },
+        },
       },
     },
   },
-  -- This function is run last and is a good place to configuring
-  -- augroups/autocommands and custom filetypes also this just pure lua so
-  -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     vim.cmd [[ autocmd BufNewFile,BufRead *.html set filetype=html ]]
     vim.cmd [[ autocmd FileType htmldjango,html,javascript,lua,yaml,yml,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab]]
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
   end,
+  -- updater = {
+  --   channel = "nightly",
+  -- },
+  --
   dap = {
     adapters = {
       python = {
@@ -112,3 +206,4 @@ return {
     },
   },
 }
+return config
