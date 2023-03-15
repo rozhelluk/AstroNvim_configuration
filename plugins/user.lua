@@ -12,7 +12,12 @@ return {
   "luisiacc/gruvbox-baby",
   "Pocco81/auto-save.nvim",
   -- "XkbSwitchEnabled",
-  "iamcco/markdown-preview.nvim",
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+  { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
   dapui = function(config) -- parameter is the default setup config table
     local dap = require "dap"
     dap.listeners.after.event_initialized["dapui_config"] = nil

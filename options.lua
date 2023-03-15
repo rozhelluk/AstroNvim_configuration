@@ -27,7 +27,7 @@ return {
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     status_diagnostics_enabled = true,
     autoformat_enabled = false,
-    mkdp_auto_start = 1,
+    mkdp_auto_start = 0,
     mkdp_auto_close = 1,
     mkdp_echo_preview_url = 1,
   },
