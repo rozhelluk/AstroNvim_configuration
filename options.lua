@@ -14,7 +14,7 @@ return {
     encoding = "UTF-8",
     fileencoding = "UTF-8",
     tabstop = 4,
-    showtabline = 1,
+    showtabline = 2,
     laststatus = 0,
   },
   g = {
