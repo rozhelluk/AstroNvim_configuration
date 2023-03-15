@@ -5,7 +5,6 @@ return {
     relativenumber = true, -- sets vim.opt.relativenumber
     number = true,
     spell = false,
-    -- signcolumn = "no",
     wrap = true,
     colorcolumn = "80,120",
     swapfile = false,
@@ -15,7 +14,7 @@ return {
     encoding = "UTF-8",
     fileencoding = "UTF-8",
     tabstop = 4,
-    showtabline = 0,
+    showtabline = 1,
     laststatus = 0,
   },
   g = {
@@ -23,8 +22,7 @@ return {
     cmp_enabled = true,              -- enable completion at start
     autopairs_enabled = true,        -- enable autopairs at start
     diagnostics_mode = 3,            -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
-    icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
-    ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+    icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing) ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     status_diagnostics_enabled = true,
     autoformat_enabled = false,
     mkdp_auto_start = 0,

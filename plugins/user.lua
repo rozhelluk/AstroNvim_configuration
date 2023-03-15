@@ -10,7 +10,10 @@ return {
   --   end,
   -- },
   "luisiacc/gruvbox-baby",
-  "Pocco81/auto-save.nvim",
+  {
+    "Pocco81/auto-save.nvim",
+    config = function() require("auto-save").setup {} end,
+  },
   -- "XkbSwitchEnabled",
   {
     "iamcco/markdown-preview.nvim",
