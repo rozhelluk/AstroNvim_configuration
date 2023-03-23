@@ -1,4 +1,5 @@
 return {
+  --
   -- Configure AstroNvim updates
   -- updater = {
   --   remote = "origin", -- remote to use
@@ -70,6 +71,10 @@ return {
     icons.DiagnosticHint = text_icons.DiagnosticHint
     icons.DiagnosticInfo = text_icons.DiagnosticInfo
     icons.DiagnosticWarn = text_icons.DiagnosticWarn
+    icons.GitUnstaged = text_icons.GitUnstaged
+    icons.GitUntracked = text_icons.GitUntracked
+    icons.GitRenamed = text_icons.GitRenamed
+    icons.Selected = text_icons.Selected
 
     vim.cmd [[ autocmd BufNewFile,BufRead *.html set filetype=html ]]
     vim.cmd [[ autocmd FileType htmldjango,html,javascript,lua,yaml,yml,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab]]

@@ -2,7 +2,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
   -- { import = "astrocommunity.utility.noice-nvim" },
-  { import = "astrocommunity.pack.python" },
+  -- { import = "astrocommunity.pack.python" },
   {
     "linux-cultist/venv-selector.nvim",
     opts = { name = ".env" },
