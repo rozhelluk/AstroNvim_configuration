@@ -42,7 +42,7 @@ return {
     ["<F4>"] = { ":w<CR>:vsplit term://python3.11 -B %<cr>i" },
     ["<F8>"] = { ":w<CR>:exec '!g++ -Wall % && ./a.out' shellescape(@%, 1)<CR>" },
     ["<F9>"] = { ":w<CR>:vsplit term://g++ -Wall % && ./a.out<cr>i" },
-    ["<F6>"] = { "vim.bo.filetype" },
+    -- ["<F6>"] = { "vim.bo.filetype" },
   },
   i = {
     ["<F5>"] = { ":w<CR>:exec '!python3.11 -B' shellescape(@%, 1)<CR>" },
@@ -59,5 +59,15 @@ return {
     ["<F10>"] = false,
     ["<F11>"] = false,
     ["<F23>"] = false,
+  },
+  v = {
+    ['"'] = { 'xi"<esc>pa"<esc>' },
+    ["'"] = { "xi'<esc>pa'<esc>" },
+    ["v["] = { "xi[<esc>pa]<esc>" },
+    ["v]"] = { "xi[<esc>pa]<esc>" },
+    ["v{"] = { "xi{<esc>pa}<esc>" },
+    ["v}"] = { "xi{<esc>pa}<esc>" },
+    ["("] = { "xi(<esc>pa)<esc>" },
+    [")"] = { "xi(<esc>pa)<esc>" },
   },
 }
