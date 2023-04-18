@@ -6,11 +6,6 @@ return {
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
   -- "XkbSwitchEnabled",
-  {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
   dapui = function(config) -- parameter is the default setup config table
     local dap = require "dap"
     dap.listeners.after.event_initialized["dapui_config"] = nil
