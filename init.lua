@@ -1,9 +1,9 @@
 return {
   --
   -- Configure AstroNvim updates
-  -- updater = {
+  updater = {
   --   remote = "origin", -- remote to use
-  --   channel = "stable", -- "stable" or "nightly"
+    channel = "nightly", -- "stable" or "nightly"
   --   version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
   --   branch = "nightly", -- branch name (NIGHTLY ONLY)
   --   commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -16,7 +16,7 @@ return {
   --     --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
   --     --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
   --   },
-  -- },
+  },
   -- Set colorscheme to use
   colorscheme = "gruvbox-baby",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
