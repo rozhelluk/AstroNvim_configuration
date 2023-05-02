@@ -1,5 +1,4 @@
 return {
-  "luisiacc/gruvbox-baby",
   {
     "linux-cultist/venv-selector.nvim",
     opts = { name = ".env" },

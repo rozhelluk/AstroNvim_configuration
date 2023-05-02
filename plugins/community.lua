@@ -9,4 +9,5 @@ return {
   { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.scrolling.cinnamon-nvim" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
+  { import = "astrocommunity.colorscheme.gruvbox-baby" },
 }
