@@ -11,4 +11,5 @@ return {
   { import = "astrocommunity.editing-support.auto-save-nvim" },
   { import = "astrocommunity.colorscheme.gruvbox-baby" },
   { import = "astrocommunity.motion.nvim-surround" },
+  { import = "astrocommunity.file-explorer.oil-nvim" },
 }
