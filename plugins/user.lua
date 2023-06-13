@@ -59,4 +59,50 @@ return {
     end,
     event = "VeryLazy",
   },
+
+  {
+    "jake-stewart/jfind.nvim",
+    branch = "1.0",
+    keys = {
+      {
+        "<c-f>",
+        function()
+          local Key = require "jfind.key"
+          require("jfind").findFile {
+            formatPaths = true,
+            callback = {
+              [Key.DEFAULT] = vim.cmd.edit,
+              [Key.CTRL_S] = vim.cmd.split,
+              [Key.CTRL_V] = vim.cmd.vsplit,
+            },
+          }
+        end,
+      },
+    },
+    config = function()
+      require("jfind").setup {
+        exclude = {
+          ".git",
+          ".idea",
+          ".vscode",
+          ".sass-cache",
+          ".class",
+          "__pycache__",
+          "node_modules",
+          "target",
+          "build",
+          "tmp",
+          "assets",
+          "dist",
+          "public",
+          "*.iml",
+          "*.meta",
+        },
+        border = "rounded",
+        formatPaths = true,
+        key = "<c-f>",
+        tmux = true,
+      }
+    end,
+  },
 }
