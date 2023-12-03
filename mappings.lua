@@ -29,17 +29,26 @@ return {
     -- this is useful for naming menus
     -- ["<leader>b"] = { name = "Buffers" },
     -- quick save
-    ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
+    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
     [";"] = { ":" },
     ["<M-l>"] = {
       function() vim.diagnostic.open_float() end,
       desc = "Hover diagnostics",
     },
-    ["<leader>n"] = { ":ASToggle<CR>", desc = "Toggle autosave" },
+
+    ["<M-k>"] = {
+      function()
+        vim.diagnostic.config {
+          virtual_text = not require("lsp_lines").toggle(),
+        }
+      end,
+      desc = "Toggle virtual diagnostic lines",
+    },
+    -- ["<leader>n"] = { ":ASToggle<CR>", desc = "Toggle autosave" },
     ["<F2>"] = { "<cmd>!toggle_vim_opacity.sh<cr><cr>", desc = "toggle vim opacity" },
     ["<F3>"] = { "<cmd>!set_alacritty_opacity.sh<cr><cr>", desc = "toggle alacritty opacity" },
-    ["<F5>"] = { ":w<CR>:exec '!python3.11 -B' shellescape(@%, 1)<CR>" },
-    ["<F4>"] = { ":w<CR>:vsplit term://python3.11 -B %<cr>i" },
+    ["<F5>"] = { ":w<CR>:exec '!python3 -B' shellescape(@%, 1)<CR>" },
+    ["<F4>"] = { ":w<CR>:vsplit term://python3 -B %<cr>i" },
     ["<F8>"] = { ":w<CR>:exec '!g++ -Wall % && ./a.out' shellescape(@%, 1)<CR>" },
     ["<F9>"] = { ":w<CR>:vsplit term://g++ -Wall % && ./a.out<cr>i" },
     -- ["<F6>"] = { "vim.bo.filetype" },
@@ -61,6 +70,7 @@ return {
     ["<F23>"] = false,
   },
   v = {
+    ["y"] = { "ygv" },
     ['"'] = { 'xi"<esc>pa"<esc>' },
     ["'"] = { "xi'<esc>pa'<esc>" },
     ["v["] = { "xi[<esc>pa]<esc>" },
@@ -70,4 +80,8 @@ return {
     ["("] = { "xi(<esc>pa)<esc>" },
     [")"] = { "xi(<esc>pa)<esc>" },
   },
+  -- vim.keymap.set("v", "<C-t>", "<cmd>TransToZH<CR>", { silent = true }),
+  -- vim.keymap.set("n", "<space>T", "<cmd>TransToEN<CR>")
+  --
+  --{
 }
