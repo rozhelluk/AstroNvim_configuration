@@ -2,27 +2,26 @@
 return {
   opt = {
     -- set to true or false etc.
-    relativenumber = true, -- sets vim.opt.relativenumber
-    number = true,
-    spell = false,
+    relativenumber = true,
+    spell = true,
     wrap = true,
     colorcolumn = "80,120",
     swapfile = false,
-    cursorline = true,
-    mouse = "a",
-    clipboard = "unnamedplus",
     encoding = "UTF-8",
     fileencoding = "UTF-8",
+    foldlevel = 4,
+    foldlevelstart = 4,
     tabstop = 4,
     showtabline = 2,
     laststatus = 0,
+    scrolloff = 4
   },
   g = {
-    mapleader = " ",                 -- sets vim.g.mapleader
-    cmp_enabled = true,              -- enable completion at start
-    autopairs_enabled = true,        -- enable autopairs at start
-    diagnostics_mode = 3,            -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
-    icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing) ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+    cmp_enabled = true,
+    autopairs_enabled = true,
+    diagnostics_mode = 3,            -- (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
+    icons_enabled = true,            -- requires :PackerSync after changing) 
+    ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     status_diagnostics_enabled = true,
     autoformat_enabled = false,
     mkdp_auto_start = 0,
