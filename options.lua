@@ -2,6 +2,7 @@
 return {
   opt = {
     -- set to true or false etc.
+    autochdir = true,
     relativenumber = true,
     spell = true,
     wrap = true,
@@ -9,8 +10,6 @@ return {
     swapfile = false,
     encoding = "UTF-8",
     fileencoding = "UTF-8",
-    foldlevel = 4,
-    foldlevelstart = 4,
     tabstop = 4,
     showtabline = 2,
     laststatus = 0,
