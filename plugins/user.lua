@@ -62,7 +62,7 @@ return {
 
   {
     "jake-stewart/jfind.nvim",
-    -- branch = "1.0",
+    branch = "2.0",
     keys = {
       {
         "<c-f>",
@@ -70,10 +70,34 @@ return {
           local Key = require "jfind.key"
           require("jfind").findFile {
             formatPaths = true,
+            hidden = true,
+            queryPosition = "top",
+            preview = true,
+            previewPosition = "right",
             callback = {
               [Key.DEFAULT] = vim.cmd.edit,
               [Key.CTRL_S] = vim.cmd.split,
               [Key.CTRL_V] = vim.cmd.vsplit,
+            },
+          }
+        end,
+      },
+      {
+        "<c-g>",
+        function()
+          local key = require "jfind.key"
+          local jfind = require "jfind"
+          require("jfind").liveGrep {
+            hidden = true, -- grep hidden files/directories
+            caseSensitivity = "smart", -- sensitive, insensitive, smart
+            --     will use vim settings by default
+            preview = true,
+            previewPosition = "right",
+            queryPosition = "top",
+            callback = {
+              [key.DEFAULT] = jfind.editGotoLine,
+              [key.CTRL_B] = jfind.splitGotoLine,
+              [key.CTRL_N] = jfind.vsplitGotoLine,
             },
           }
         end,
@@ -98,9 +122,7 @@ return {
           "*.iml",
           "*.meta",
         },
-        border = "rounded",
-        formatPaths = true,
-        key = "<c-f>",
+        windowBorder = false,
         tmux = true,
       }
     end,
